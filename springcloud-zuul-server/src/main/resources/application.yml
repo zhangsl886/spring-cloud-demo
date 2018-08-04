@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: api-gateway
+    
+server:
+  port: 8766
+  
+zuul:
+  routes:
+    # 面向服务的路由
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon-consume
+      
+    # 传统的路由
+    api-b-url:
+      path: /api-b-url/**
+      url: http://localhost:8764/testFeign 
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
